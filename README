@@ -1,0 +1,34 @@
+ContentEditor
+=============
+
+The edit_me plugin makes the views of your rails app editable.  It requires
+your app to be a git repository, as it uses git to track changes.
+
+Installing
+==========
+
+You'll need the git gem
+
+Then:
+
+script/plugin install <git repo>
+
+Next, add map.edit_me to the end of routes.rb
+
+Usage
+=====
+
+In your app, hit the url /edit_me/edit_mode?editing=true.  This puts you in
+edit mode.  Now when you hit your pages you will see little pencil icons in your
+views.  Click one.  It should be self-explanatory from here.
+
+Future
+======
+
+Lots to do:
+Add wysmeditor
+Configure which files are editable
+Cosmetics, would welcome some help
+File tree browser?
+
+Copyright (c) 2008 Christopher C. Nelson, released under the MIT license

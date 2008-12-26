@@ -1,0 +1,17 @@
+
+<%= form_tag(@update_url, {:method => :put}) %>
+<%= text_area_tag  "content", @content_item.content, :size => "40x20" %>
+<%= submit_tag "Save"  %>
+<table>
+  <tr>
+    <td>Date</td>
+    <td>Message</td>
+  </tr>
+  <% @content_item.history.each do |c| %>
+    <tr>
+      <td><%= c.committer_date %></td>
+      <td><%= c.message %> </td>
+      <td><%= link_to "Activate revision", "/edit_me/activate/#{c.sha}/#{@content_item.path}"%> </td>
+    </tr>
+  <% end %>
+</table>
