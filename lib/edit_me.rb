@@ -14,13 +14,33 @@ module ActionView
 end
 
 module EditMe
+  module Editable
+    mattr_accessor :includes, :excludes
+    @@includes = [%r{^app/views/.*(html|erb)$}]
+    @@excludes = []
+  end
   module EditorHelper
+    
+    def editable?(path)
+      included?(path) && !excluded?(path)
+    end
+
+    def included?(path)
+      EditMe::Editable.includes.any? {|inc| inc.match(path)}
+    end
+
+    def excluded?(path)
+      EditMe::Editable.excludes.any? {|inc| inc.match(path)}
+    end
+
     def editing?
       session[:editing]
     end
+
     def link_to_edit
-      if editing?
-        %{<a href="/edit_me/#{template.relative_path}"><img src="/images/edit.png" /></a>}
+      if editing? && editable?(template.relative_path)
+        onclick = %{window.open ('/edit_me/#{template.relative_path}', 'editor','menubar=0,resizable=1,width=600,height=400');}
+        %{<a href="#" onclick="#{onclick}"><img src="/images/edit.png" /></a>}
       end
     end
   end

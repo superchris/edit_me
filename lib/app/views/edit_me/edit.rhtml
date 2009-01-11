@@ -1,7 +1,28 @@
+<head>
+  <%=javascript_include_tag :defaults, "jquery", "ui.core", "ui.tabs","jquery.wymeditor"%>
+  <%=stylesheet_link_tag "edit_me", "ui.core", "ui.tabs", "ui.theme" %>
 
-<%= form_tag(@update_url, {:method => :put}) %>
-<%= text_area_tag  "content", @content_item.content, :size => "40x20" %>
-<%= submit_tag "Save"  %>
+ <script>
+   jQuery.noConflict();
+  jQuery(document).ready(function(){
+    jQuery("#tabset > ul").tabs();
+    jQuery('.wymeditor').wymeditor();
+  });
+  </script>
+
+</head>
+<body>
+<div id="tabset">
+<ul>
+  <li><a href="#editor">Edit</a></li>
+  <li><a href="#history">History</a></li>
+</ul>
+<div id="editor">
+<%= form_remote_tag(:url => @update_url, :method => "PUT", :html => {:method => "PUT"}) %>
+<%= text_area_tag  "content", @content_item.content, :size => "40x20", :class => "wymeditor" %>
+<%= submit_tag "Save", :class => "wymupdate"  %>
+</div>
+<div id="history">
 <table>
   <tr>
     <td>Date</td>
@@ -15,3 +36,6 @@
     </tr>
   <% end %>
 </table>
+</div>
+</div>
+</body>

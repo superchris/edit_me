@@ -20,7 +20,6 @@ class EditMeController < ApplicationController
     @content_item = EditMe::ContentItem.new(File.join(params[:path]))
     @content_item.update(params[:content],
       params[:commit_message] || "Edited online")
-    redirect_to :back
   end
   
 end
