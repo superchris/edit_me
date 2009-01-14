@@ -1,4 +1,4 @@
-ContentEditor
+EditMe
 =============
 
 The edit_me plugin makes the views of your rails app editable.  It requires
@@ -7,28 +7,46 @@ your app to be a git repository, as it uses git to track changes.
 Installing
 ==========
 
-You'll need the git gem
+1. You'll need the git gem.  Add it to your rails app like so:
 
-Then:
+config.gem "schacon-git", :lib => "git", :source => "http://gems.github.com"
 
-script/plugin install <git repo>
+2. script/plugin install <git repo>
 
-Next, add map.edit_me to the end of routes.rb
+3. add map.edit_me to the end of routes.rb
+
+4. rake edit_me:install will copy javascript and css files into you're public
+directory so edit_me will be pretty and wymeditor will work
 
 Usage
 =====
 
-In your app, hit the url /edit_me/edit_mode?editing=true.  This puts you in
-edit mode.  Now when you hit your pages you will see little pencil icons in your
-views.  Click one.  It should be self-explanatory from here.
+Firstly, you're app has to be a git repo with an initial commit.  Doing
+
+git init
+git add .
+git commit -m "Initial commit"
+
+will take care of this for you.
+
+Now fire up you're app.  To enter edit moe hit the url /edit_me/edit_mode?editing=true.
+This puts you in edit mode.  Now when you hit your pages you will see little
+pencil icons in your views.  Click one.  You will see 2 tabs, Edit and Hitory.
+Wymeditor is the editor used here.
+
+Configuration
+=============
+
+You can change which files are editable by setting/adding to
+ EditMe::Editable.includes and EditMe::Editable.excludes.  These are arrays of
+regexes.
 
 Future
 ======
 
-Lots to do:
-Add wysmeditor
-Configure which files are editable
-Cosmetics, would welcome some help
+Escaping <% in rhtml
+Multiple types of editors
+More git features?
 File tree browser?
 
 Copyright (c) 2008 Christopher C. Nelson, released under the MIT license
