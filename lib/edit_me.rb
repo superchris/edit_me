@@ -40,7 +40,7 @@ module EditMe
     def link_to_edit
       if editing? && editable?(template.relative_path)
         onclick = %{window.open ('/edit_me/#{template.relative_path}', 'editor','menubar=0,resizable=1,width=600,height=400');}
-        %{<a href="#" onclick="#{onclick}"><img src="/images/edit.png" /></a>}
+        %{<a href="#" onclick="#{onclick}" style="position:absolute; display:block;"><img src="/images/edit.png" title="#{template.relative_path}" /></a>}
       end
     end
   end
