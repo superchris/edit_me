@@ -29,7 +29,7 @@ git commit -m "Initial commit"
 
 will take care of this for you.
 
-Now fire up you're app.  To enter edit moe hit the url /edit_me/edit_mode?editing=true.
+Now fire up you're app.  To enter edit me hit the url /edit_me/edit_mode?editing=true.
 This puts you in edit mode.  Now when you hit your pages you will see little
 pencil icons in your views.  Click one.  You will see 2 tabs, Edit and Hitory.
 Wymeditor is the editor used here.
